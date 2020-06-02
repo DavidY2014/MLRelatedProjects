@@ -1,3 +1,5 @@
+# -*- coding: utf-8
+
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
@@ -9,7 +11,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.feature_selection import VarianceThreshold
 from scipy.stats import pearsonr
-import matplotlib.pyplot as plt
+
 
 def load_gaolu():
     # 高炉能源数据
@@ -106,7 +108,7 @@ def lowVarianceFeatureExtract_demo():
 
 #相关系数特征提取(用pearson系数,[-1,1] 0为无关，1为正相关，-1为负相关,p值为显著性，越小越好)
 def pearsonFeatureExtract_demo():
-    factor = ['Gas_consumption','Molteniron_production', 'TRTpower_generation',
+    factor = ['Process_energyconsumption','1Process_energyconsumption','2Process_energyconsumption','Gas_consumption','Molteniron_production', 'TRTpower_generation',
                    'Gas_production', 'Coalinjection_consumption',
                    'Coke_consumption', 'Amount_of_blast',
                    '1BTwind_temperature', '2BTwind_temperature',
@@ -122,7 +124,7 @@ def pearsonFeatureExtract_demo():
     # 缺失值删除
     data.dropna(inplace=True)
     # 源特征值
-    x = data.iloc[1:, 3:]
+    x = data.iloc[1:, :]
     #print(x)
     print('相关系数为\n')
     #循环计算相关系数
@@ -272,5 +274,5 @@ if __name__ == '__main__':
     #liner_demo2()
     #liner_demo3()
     #lowVarianceFeatureExtract_demo()
-    #pearsonFeatureExtract_demo()
-    PCA_demo()
+    pearsonFeatureExtract_demo()
+    #PCA_demo()
